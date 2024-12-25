@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueberry Factory Management System</title>
+    <link rel="stylesheet" href="styles.css">
+	  <script src="script.js" defer></script>
+		  <link rel="icon" href="images\logo.png" type="image/png">
+	  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+
+	 
+</head>
+
+<!-- head-->
+
+<body>
+
+<!-- header-->
+    <header>
+        <h1>Blueberry Factory Management System</h1>
+       
+    </header>
+<!-- header-->
+	
+	
+<!-- navbar-->
+  <nav>
+   <button onclick="showSection('default')">Home</button>
+    <button onclick="showSection('supplier-management')">Supplier Management</button>
+    <button onclick="showSection('product-categorization')">Product Categorization</button>
+    <button onclick="showSection('sales-management')">Sales Management</button>
+    <button onclick="showSection('financial-analysis')">Financial Analysis</button>
+    <button onclick="showSection('inventory-management')">Inventory Management</button>
+	 <button onclick="showSection('report-generation')">Report Generation</button>
+  </nav>
+<!-- navbar finished-->
+
+
+<!-- HOME page-->
+        <section id="default">
+		   <div id="welcome" >
+            <h2>Welcome to the Management System</h2>
+            <p>Select a module from the navigation menu to get started.</p>
+			  
+	<img src="images/bluberryy.png" alt="Blueberry" style="width: 25%; height: auto; display: block; margin: 0 auto;"> 
+			</div>
+        </section>
+		
+<!-- HOME page finished-->
+  
+ 
+<!-- SECTION 1:SUPPLIER MANAGEMENT MODULE -->	
+   
+    
+<section id="supplier-management" class="section" >
+	 
+	 
+	<!-- SECTION 1.1 Farmers' Information  -->
+	
+<div id="farmers-info">
+	 
+	     <!-- getting farmer information  -->
+    <h2>Farmers' Information</h2>
+    <form id="farmer-form">
+        <label for="farmer-id">Farmer ID:</label>
+        <input type="number" id="farmer-id" placeholder="Enter farmer ID" required>
+
+        <label for="farmer-name">Name:</label>
+        <input type="text" id="farmer-name" placeholder="Enter farmer's name" required>
+
+        <label for="contact">Contact Details:</label>
+        <input type="text" id="contact" placeholder="Phone, Email" required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" placeholder="Enter location" required>
+
+        <button type="submit">Add/Update Farmer</button>
+    </form>
+	     <!-- getting farmer information  -->
+		 
+		 
+		 
+    <!-- farmer search  -->
+	 <form id="farmer-search-form">
+		<label for="farmer-search">Search Farmers:</label>
+		<input type="text" id="farmer-search" placeholder="Enter Name or Location">
+		<button type="submit">Search</button>
+	</form>
+      <!-- farmer search  -->
+	  
+	  
+	  
+	  <!-- farmer table  -->
+    <h3>Farmers List</h3>
+    <table id="farmers-list">
+        <thead>
+            <tr>
+                <th>Farmer ID</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Farmer data will come -->
+        </tbody>
+    </table>
+ </div >
+  <!-- farmer table  -->
+  
+	<!-- SECTION 1.1 Farmers' Information finished  -->
+
+
+
+	<!-- SECTION 1.2  Purchase Records -->
+<div id="purchase-records">
+
+    <!-- getting purchase records   -->
+    <h2>Purchase Records</h2>
+    <form id="purchase-form">
+        <label for="purchase-id">Purchase ID:</label>
+        <input type="text" id="purchase-id" placeholder="Enter purchase ID" required>
+
+        <label for="product-type">Product Type:</label>
+		<select id="product-type" required>
+			<option value="blueberry">Blueberry</option>
+		 
+		</select>
+
+        <label for="farmer-id-purchase">Farmer ID:</label>
+        <input type="text" id="farmer-id-purchase" placeholder="Enter farmer ID" required>
+
+        <label for="purchase-date">Date of Purchase:</label>
+        <input type="date" id="purchase-date" required>
+
+        <label for="quantity-purchased">Quantity (kg):</label>
+        <input type="number" id="quantity-purchased" required>
+
+        <label for="price-per-kg">Price per kg:</label>
+        <input type="number" id="price-per-kg" required>
+
+        <button type="submit">Record Purchase</button>
+    </form>
+	 <!-- getting purchase records   -->
+
+
+
+	 <!--  purchase records table  -->
+    <h3>Purchase Records</h3>
+	
+    <table id="purchase-list">
+        <thead>
+            <tr>
+                <th>Purchase ID</th>
+                <th>Farmer ID</th>
+                <th>Date</th>
+				<th>Product Type</th>
+                <th>Quantity (kg)</th>
+                <th>Price per kg</th>
+                <th>Total Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Purchase records will come-->
+        </tbody>
+    </table>
+	 <!--  purchase records table  -->
+	 
+	 
+</div>
+
+
+
+	<!--  sort purchases  -->
+<div>
+<h3>Sort Purchases </h3>
+
+    <div id="sort-buttons">
+        <button onclick="sortPurchaseRecords('date')">Sort by Date</button>
+        <button onclick="sortPurchaseRecords('farmer')">Sort by Farmer</button>
+        <button onclick="sortPurchaseRecords('amount')">Sort by Amount</button>
+    </div>
+
+
+<h3>Sorted Purchase Records</h3>
+<table id="sorted-purchase-list">
+    <thead>
+        <tr>
+            <th>Purchase ID</th>
+            <th>Farmer ID</th>
+            <th>Purchase Date</th>
+            <th>Product Type</th>
+            <th>Quantity</th>
+            <th>Total Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- sorteds will be added -->
+    </tbody>
+</table>
+</div>
+	<!--  sort purchases  -->
+ 
+ 
+
+	<!-- Purchase Summary For Farmer -->
+<div>
+<form id="farmer-summary-form">
+     <h3>Purchase Summary For Farmer</h3>
+    <label for="farmer-summary-id">Farmer ID:</label>
+    <input type="text" id="farmer-summary-id" placeholder="Enter Farmer ID" required>
+    <button type="submit">View Summary</button>
+</form>
+
+
+<div id="farmer-summary-results">
+    <p id="summary-total-quantity">Total Quantity: </p>
+    <p id="summary-total-cost">Total Cost: </p>
+</div>
+
+
+<table id="farmer-summary-list">
+    <thead>
+        <tr>
+            <th>Purchase ID</th>
+            <th>Date</th>
+            <th>Product Type</th>
+            <th>Quantity</th>
+            <th>Total Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- informations will come -->
+    </tbody>
+</table>
+</div>
+	<!-- Purchase Summary For Farmer -->
+
+
+	<!-- Purchase Summary For Time Period -->
+<div>
+<h3>Purchase Summary For Time Period</h3>
+<form id="time-period-form">
+    <label for="time-period">Select Time Period:</label>
+     <label for="start-date">Start Date:</label>
+    <input type="date" id="start-date">
+
+    <label for="end-date">End Date:</label>
+    <input type="date" id="end-date">
+
+    <button type="submit">Generate Summary</button>
+</form>
+
+
+<div id="time-period-summary-results">
+    <p id="period-total-quantity">Total Quantity: </p>
+    <p id="period-total-cost">Total Cost: </p>
+</div>
+
+
+<table id="time-period-summary-list">
+    <thead>
+        <tr>
+            <th>Purchase ID</th>
+            <th>Farmer ID</th>
+            <th>Date</th>
+            <th>Product Type</th>
+            <th>Quantity</th>
+            <th>Total Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- informations will come -->
+    </tbody>
+</table>
+</div>
+
+	<!-- Purchase Summary For Time Period -->
+
+
+	<!-- SECTION 1.2  Purchase Records finished -->
+
+
+	<!-- SECTION 1.3  Expense Calculation -->
+	
+	
+	
+	<!--  expense calculation -->
+<div id="expense-calculation">
+    <h2>Expense Calculation</h2>
+    <form id="expense-form">
+     
+
+<label for="start-date">Start Date:</label>
+<input type="date" id="start-date">
+
+<label for="end-date">End Date:</label>
+<input type="date" id="end-date">
+
+        <button type="submit">Calculate Expenses</button>
+    </form>
+
+    <h3>Total Expenses</h3>
+    <p id="total-expenses">$0</p>
+       </div>
+	   <!--  expense calculation -->
+
+
+
+
+	<!-- raw material cost -->	   	   
+ <h1>Raw Material Cost Report</h1>
+<div>
+    
+    <form id="raw-material-report-form">
+        <button type="submit">Generate Report</button>
+    </form>
+
+ 
+    <table id="raw-material-report-list">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Total Cost ($)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Raw material costs will come -->
+        </tbody>
+    </table>
+	</div>
+	<!-- raw material cost -->	  
+
+	   
+<!-- SECTION 1.3  Expense Calculation finished -->      
+	   
+	   
+	   </section>
+
+<!-- SECTION 1:SUPPLIER MANAGEMENT MODULE  FINISHED-->	
+
+
+<!-- SECTION 2. Product Categorization and Packaging Module -->	 
+
+	   
+<!-- SECTION 2.1  Product Categories -->	
+<section id="product-categorization" class="section" style="display:none;">
+		   
+		   
+<div id="product-categorization-section">
+
+ <!-- Getting Product Categorization Information -->	
+    <h2>Product Categorization and Packaging</h2>
+    
+    <form id="category-form">
+        <label for="product-name">Product Name and Quantity:</label>
+       
+		<select id="product-name">
+        <option value="">Select a product</option>
+        <!-- Options will come -->
+		</select>
+		
+	<h3>Product Details</h3>
+    <p id="product-details">Select a product to view its details.</p>
+
+        <label for="category">Category:</label>
+        <select id="category" required>
+            <option value="small">Small (100g)</option>
+            <option value="medium">Medium (250g)</option>
+            <option value="large">Large (500g)</option>
+            <option value="extra-large">Extra Large (1kg)</option>
+            <option value="family-pack">Family Pack (2kg)</option>
+            <option value="bulk-pack">Bulk Pack (5kg)</option>
+            <option value="premium">Premium (Custom weight)</option>
+        </select>
+
+	 <!-- Premium  -->
+    <div id="premium-weight-input" style="display: none;">
+        <label for="premium-weight">Enter Package Weight (kg) for Premium:</label>
+        <input type="number" id="premium-weight" min="0.1" step="0.1" placeholder="Enter weight in kg">
+    </div>
+        <!-- Premium  -->
+		
+        <label for="quantity">Packaging Quantity (kg):</label>
+        <input type="number" id="quantity" placeholder="Enter quantity in kilograms" required>
+
+        <button type="submit">package</button>
+		
+    </form>
+	 <!-- Getting Product Categorization Information -->	
+	
+	
+	
+ <!-- Product Categories Table -->	
+    <h3>Product Categories</h3>
+    <table id="category-list">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Packaging quantity (kg)</th>
+				 <th>Total Package</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Category data will come-->
+        </tbody>
+    </table>
+ <!-- Product Categories Table -->	
+ 
+  </div>
+
+<!-- SECTION 2.1 finished -->	
+	
+	 
+
+	 </section >
+<!-- SECTION 2. Product Categorization and Packaging Module -->	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+<!-- SECTION  3. Sales Management Module -->	
+
+<section id="sales-management" class="section">
+   
+<div style="display: flex; align-items: center; justify-content: center;gap: 10px;">	  
+	
+<!-- market table -->
+     <table id="market"   style="width: 50%; margin: 0 auto ;vertical-align: middle;">
+        <thead>
+	
+		<tr>
+		<th colspan="3" style="text-align: center;">Market</th>
+		</tr>
+            <tr>
+			
+                <th style="width: 23%;">Product Name</th>
+				 <th style="width: 23%;">Category</th>
+                <th style="width: 23%;" >Total Packet</th>
+            </tr>
+        </thead>
+        <tbody id="market-table-body" >
+            <!-- dynamically -->
+        </tbody>
+    </table>
+<!-- market table -->
+	  
+	  
+	  
+<!-- price table -->  
+	   <table id="marketprice" style="width: 50%; margin: 0 auto ;vertical-align: middle;" >
+        <thead>
+	
+		<tr>
+		<th colspan="3" style="text-align: center;">Blueberry Pricing Structure</th>
+		</tr>
+            <tr>
+			
+                <th style="width: 23%;">Category</th>
+				 <th style="width: 23%;">Price</th>
+                
+            </tr>
+        </thead>
+        <tbody id="pricing-table-body" >
+            <!-- dynamically -->
+        </tbody>
+    </table>
+<!-- price table -->  	  
+
+
+<!-- market image-->  	 
+	<img src="images/bluberry.jpg" alt="Blueberry" style="width: 25%; height: auto; display: block; margin: 0 auto;">
+<!-- market image-->  
+		
+</div>	
+	
+<!-- getting order information-->  
+    <div id="order-management-section">
+        <h2>Order Management</h2>
+        
+        <form id="order-form">
+			<label for="customer-id">Customer id:</label>
+            <input type="number" id="customer-id" placeholder="Enter customer id" required>
+			
+            <label for="customer-name">Customer Name:</label>
+            <input type="text" id="customer-name" placeholder="Enter customer name" required>
+
+            <label for="customer-contact">Customer Contact:</label>
+            <input type="text" id="customer-contact" placeholder="Enter customer contact" required>
+
+            <label for="shipping-info">Shipping Information:</label>
+            <input type="text" id="shipping-info" placeholder="Enter shipping address" required>
+         
+		
+		 
+           <label for="products">Products</label>
+			<select id="products">
+    <!-- Options will come -->
+      </select>
+		   
+         
+            <label for="numberofpackage">Number of Package:</label>
+            <input type="number" id="number-of-package" placeholder="Enter package number" required>
+
+            <button type="submit">Order</button>
+        </form>
+<!-- getting order information--> 
+
+
+		
+<!-- Order History Table -->
+        <h3>Order History</h3>
+        <table id="order-history">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Product Type</th>
+                    <th>Number of Package</th>
+				
+					<th>Remaining Packages</th> 
+					 <th>Total Price</th> 
+					<th>Status</th>
+                 
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Order data will come -->
+            </tbody>
+        </table>
+<!-- Order History Table -->
+
+
+<!-- Filter orders -->
+<h3>Filter Orders</h3>
+<form id="filter-form">
+    <label for="filter-status">Status:</label>
+    <select id="filter-status">
+        <option value="">All</option>
+        <option value="Pending">Pending</option>
+        <option value="Processed">Processed</option>
+        <option value="Shipped">Shipped</option>
+        <option value="Delivered">Delivered</option>
+    </select>
+
+    <label for="filter-customer">Customer:</label>
+    <input type="text" id="filter-customer" placeholder="Enter customer name">
+
+    <label for="filter-category">Product Category:</label>
+    <input type="text" id="filter-category" placeholder="Enter product category">
+
+    <button type="submit">Filter</button>
+</form>
+
+
+<h3>Filtered Orders</h3>
+<table id="filtered-orders">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Product Type</th>
+            <th>Number of Package</th>
+            <th>Remaining Packages</th>
+            <th>Total Price</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Filtered order data will come here -->
+    </tbody>
+</table>
+
+
+<!-- Filter orders -->
+
+
+<!-- Sales Report -->
+
+<h3>Sales Reports</h3>
+<button id="export-csv">Export to CSV</button>
+
+<div class="chart-container">
+    <canvas id="salesChart"></canvas>
+</div>
+<button id="draw-chart">Draw Sales Chart</button>
+<!-- Sales Report -->
+
+    </div>
+ 
+
+
+	  
+<!-- revenue-->		  
+<div>  
+<h2>Revenue Calculation</h2>
+<table id="revenue-table">
+    <thead>
+        <tr>
+            <th>Product Category</th>
+            <th>Quantity Sold</th>
+            <th>Unit Price</th>
+            <th>Total Revenue</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- revenue data will come -->
+    </tbody>
+</table>
+</div>
+<!-- revenue-->		
+	  
+	   
+</section >
+<!-- SECTION  3. Sales Management Module Finished-->	
+
+
+
+
+<!-- SECTION 4. Financial Analysis Module -->	
+<section id="financial-analysis" class="section">
+  <table id="financial-analysis-table">
+    <thead>
+      <tr>
+        <th>Total Income</th>
+        <th>Total Expenses</th>
+        <th>Net Profit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will come -->
+    </tbody>
+  </table>
+  
+    <div id="tax-summary-box" class="summary-box">
+    <h3>Tax Summary</h3>
+    <p id="tax-summary"></p>
+  </div>
+
+  
+  <button id="update-financial-analysis">Update Financial Analysis</button>
+</section>
+
+<!-- SECTION 4. Financial Analysis Module Finished -->	
+	   
+
+
+
+
+<!-- SECTION 5 Inventory Management Module-->
+				  	
+<section id="inventory-management" class="section">
+				  
+				    <!-- SECTION 5.1 -->
+					
+					
+					<h3>Unpacked Products</h3>
+    <table id="inventory-unpacked">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Unpacked product will come -->
+        </tbody>
+    </table>
+				  		  
+				  <h2>Inventory List</h2>
+    <table id="inventory">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+				 <th>Category</th>
+                <th>Total Packet</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- inventory will come -->
+        </tbody>
+    </table>
+				    
+</section>
+					
+<!-- SECTION 5 Inventory Management Module finished-->
+					  
+					  
+					  
+					  
+					  
+<!-- SECTION 6. Comprehensive Report Generation Module -->
+				  
+					  
+			 <section id="report-generation" class="section">
+  <h2>Comprehensive Report</h2>
+  <table id="comprehensive-report-table">
+    <thead>
+      <tr>
+        <th>Total Income</th>
+        <th>Total Expenses</th>
+        <th>Tax Applied</th>
+        <th>Net Profit</th>
+        <th>Products Sold Per Category</th>
+        <th>Remaining Stock Per Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Report rows will come -->
+    </tbody>
+  </table>
+  <button id="generate-report">Generate Report</button>
+</section>
+
+<!-- SECTION 6. Comprehensive Report Generation Module finished -->	
+	
+	
+	
+	
+	
+<!-- FOOTER -->		
+    <footer>
+        <p>&copy; 2024 Blueberry Factory</p>
+    </footer>
+   
+<!-- FOOTER -->		
+				  
+	
+</body>
+</html>
